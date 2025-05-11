@@ -18,7 +18,7 @@ function AddInventoryItem({ onAdd }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/inventory', {
+      const res = await axios.post('https://sshg365-api.onrender.com/inventory', {
         ...form,
         quantity: parseFloat(form.quantity),
         costPerUnit: parseFloat(form.costPerUnit)

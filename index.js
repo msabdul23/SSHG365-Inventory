@@ -38,7 +38,21 @@ app.get('/inventory', async (req, res) => {
   }
 });
 
+app.delete('/inventory/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await prisma.inventoryItem.delete({
+      where: { id: parseInt(id) },
+    });
+    res.status(204).end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to delete item' });
+  }
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+
 });
