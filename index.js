@@ -39,7 +39,7 @@ app.get('/inventory', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch inventory items' });
   }
 });
-
+// Delete an Inventory item
 app.delete('/inventory/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -50,6 +50,23 @@ app.delete('/inventory/:id', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to delete item' });
+  }
+});
+//Edit an inventory item
+app.put('/inventory/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, category, unit, quantity, costPerUnit } = req.body;
+
+  try {
+    const updatedItem = await prisma.inventoryItem.update({
+      where: { id: parseInt(id) },
+      data: { name, category, unit, quantity, costPerUnit },
+    });
+
+    res.json(updatedItem);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to update item' });
   }
 });
 
