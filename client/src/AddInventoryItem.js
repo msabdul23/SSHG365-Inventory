@@ -40,7 +40,19 @@ function AddInventoryItem({ onAdd }) {
   <form onSubmit={handleSubmit} style={styles.form}>
     <h2 style={styles.title}>Add New Inventory Item</h2>
     <input name="name" placeholder="Name" value={form.name} onChange={handleChange} style={styles.input} required />
-    <input name="category" placeholder="Category" value={form.category} onChange={handleChange} style={styles.input} required />
+        <select name="category" value={form.category} onChange={handleChange} required style={styles.input}>
+            <option value="">-- Select Category --</option>
+            <option value="Bread">Bread</option>
+            <option value="Chicken">Chicken</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Drinks">Drinks</option>
+            <option value="Dry goods">Dry goods</option>
+            <option value="Freezer">Freezer</option>
+            <option value="Paper and Plastic">Paper and Plastic</option>
+            <option value="Prepped food">Prepped food</option>
+            <option value="Produce">Produce</option>
+            <option value="Spices">Spices</option>
+        </select>
     <input name="unit" placeholder="Unit" value={form.unit} onChange={handleChange} style={styles.input} required />
     <input name="quantity" placeholder="Quantity" value={form.quantity} onChange={handleChange} style={styles.input} type="number" required />
     <input name="costPerUnit" placeholder="Cost per Unit" value={form.costPerUnit} onChange={handleChange} style={styles.input} type="number" step="0.01" required />
